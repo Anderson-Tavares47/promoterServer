@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Associar Usuário a Pesquisa</title>
+</head>
+<body>
+  <h1>Associar Usuário a Pesquisa</h1>
+  <form id="formAssociarUsuario">
+    <label for="idUsuario">ID do Usuário:</label>
+    <input type="number" id="idUsuario" name="idUsuario" required>
+    <br>
+    <label for="idPesquisa">ID da Pesquisa:</label>
+    <input type="number" id="idPesquisa" name="idPesquisa" required>
+    <br>
+    <button type="button" onclick="associarUsuario()">Associar Usuário</button>
+  </form>
+
+  <script>
+    async function associarUsuario() {
+      // Obtenha os IDs do formulário
+      const idUsuario = document.getElementById('idUsuario').value;
+      const idPesquisa = document.getElementById('idPesquisa').value;
+
+      // Realize a requisição para associar o usuário à pesquisa
+      try {
+        const response = await fetch(`http://localhost:5000/questionUser/${idUsuario}/${idPesquisa}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': 'tpfTech', // Substitua pela sua chave API
+          },
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result.message);
+          // Se necessário, redirecione para outra página ou faça outras ações após a associação bem-sucedida
+        } else {
+          console.error('Erro ao associar usuário à pesquisa:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erro ao associar usuário à pesquisa:', error);
+      }
+    }
+  </script>
+</body>
+</html>

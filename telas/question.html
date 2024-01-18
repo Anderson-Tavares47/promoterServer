@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Pesquisa</title>
+</head>
+<body>
+  <h1>Criar Pesquisa</h1>
+  <form id="formCriarPesquisa">
+    <label for="nomePesquisa">Nome da Pesquisa:</label>
+    <input type="text" id="nomePesquisa" name="nomePesquisa" required>
+    <br>
+    <label for="colaboradores">Colaboradores Responsáveis:</label>
+    <input type="text" id="colaboradores" name="colaboradores" required>
+    <br>
+    <label for="obrigatoriedade">Obrigatória:</label>
+    <select id="obrigatoriedade" name="obrigatoriedade">
+      <option value="true">Sim</option>
+      <option value="false">Não</option>
+    </select>
+    <br>
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status" required>
+    <br>
+    <!-- Adicione aqui campos para as perguntas, como pergunta, tipo_pergunta, respostas, obrigatoriedade -->
+    <button type="button" onclick="criarPesquisa()">Criar Pesquisa</button>
+  </form>
+
+  <script>
+    async function criarPesquisa() {
+      // Obtenha os dados do formulário
+      const nomePesquisa = document.getElementById('nomePesquisa').value;
+      const colaboradores = document.getElementById('colaboradores').value;
+      const obrigatoriedade = document.getElementById('obrigatoriedade').value === 'true';
+      const status = document.getElementById('status').value;
+
+      // Simule perguntas, ajuste conforme necessário
+      const perguntas = [
+        { pergunta: 'Qual sua opinião sobre...', tipo_pergunta: 'discursiva', respostas: null, obrigatoriedade: true },
+        // Adicione mais perguntas conforme necessário
+      ];
+
+      // Realize a requisição para criar a pesquisa
+      try {
+        const response = await fetch('http://localhost:5000/question', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': 'tpfTech', // Substitua pela sua chave API
+          },
+          body: JSON.stringify({ nome_pesquisa: nomePesquisa, colaboradores_responsaveis: colaboradores, obrigatoriedade, status, perguntas }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log(result.message);
+          // Se necessário, redirecione para outra página ou faça outras ações após a criação bem-sucedida
+        } else {
+          console.error('Erro ao criar pesquisa:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erro ao criar pesquisa:', error);
+      }
+    }
+  </script>
+</body>
+</html>

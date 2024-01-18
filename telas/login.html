@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <form id="formLogin">
+    <label for="nome">Nome de usuário:</label>
+    <input type="text" id="nome" name="nome" required>
+    <br>
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha" required>
+    <br>
+    <button type="button" onclick="realizarLogin()">Entrar</button>
+  </form>
+
+  <script>
+    async function realizarLogin() {
+      const nome = document.getElementById('nome').value;
+      const senha = document.getElementById('senha').value;
+  
+      // Adicionando a obtenção da geolocalização
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+  
+            const apiKey = 'tpfTech'; // Sua chave API aqui
+  
+            try {
+              const response = await fetch('http://localhost:5000/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'api-key': apiKey,
+                },
+                body: JSON.stringify({ nome, senha, geolocalizacao: `(${latitude},${longitude})` }),
+              });
+  
+              if (response.ok) {
+                const result = await response.json();
+                console.log(result.message);
+                // Se necessário, redirecione para a página principal ou faça outras ações após o login bem-sucedido
+              } else {
+                console.error('Erro no login:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Erro no login:', error);
+            }
+          },
+          (error) => {
+            console.error('Erro ao obter geolocalização:', error.message);
+          }
+        );
+      } else {
+        console.error('Geolocalização não suportada pelo navegador');
+      }
+    }
+  </script>
+  
+</body>
+</html>

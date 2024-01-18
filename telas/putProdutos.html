@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listar Produtos</title>
+</head>
+<body>
+  <h1>Listar Produtos</h1>
+  <ul id="listaProdutos"></ul>
+
+  <script>
+    async function carregarProdutos() {
+      const apiKey = 'tpfTech';
+
+      try {
+        const response = await fetch('http://localhost:5000/getProducts', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': apiKey,
+          },
+        });
+
+        if (response.ok) {
+          const produtos = await response.json();
+
+          const listaProdutos = document.getElementById('listaProdutos');
+          listaProdutos.innerHTML = '';
+
+          produtos.forEach(produto => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+              <strong>${produto.nome}</strong> - ${produto.marca} - R$ ${produto.preco} - ${produto.descricao}
+              <button onclick="editarProduto(${produto.id}, '${produto.nome}', '${produto.marca}', ${produto.preco}, '${produto.descricao}')">Editar</button>
+              <button onclick="excluirProduto(${produto.id})">Excluir</button>
+            `;
+            listaProdutos.appendChild(listItem);
+          });
+        } else {
+          console.error('Erro ao obter lista de produtos:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erro ao obter lista de produtos:', error);
+      }
+    }
+
+    async function editarProduto(id, nome, marca, preco, descricao) {
+      const novoNome = prompt('Novo Nome:', nome);
+      const novaMarca = prompt('Nova Marca:', marca);
+      const novoPreco = parseFloat(prompt('Novo Preço:', preco));
+      const novaDescricao = prompt('Nova Descrição:', descricao);
+
+      if (novoNome !== null && novaMarca !== null && !isNaN(novoPreco) && novaDescricao !== null) {
+        const apiKey = 'tpfTech';
+
+        try {
+          const response = await fetch(`http://localhost:5000/putProducts/${id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'api-key': apiKey,
+            },
+            body: JSON.stringify({
+              nome: novoNome,
+              marca: novaMarca,
+              preco: novoPreco,
+              descricao: novaDescricao,
+            }),
+          });
+
+          if (response.ok) {
+            console.log('Produto atualizado com sucesso!');
+            carregarProdutos(); // Atualiza a lista após a edição
+          } else {
+            console.error('Erro ao atualizar produto:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Erro ao atualizar produto:', error);
+        }
+      }
+    }
+
+    async function excluirProduto(id) {
+      const confirmacao = confirm('Tem certeza que deseja excluir este produto?');
+
+      if (confirmacao) {
+        const apiKey = 'tpfTech';
+
+        try {
+          const response = await fetch(`http://localhost:5000/deleteProducts/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'api-key': apiKey,
+            },
+          });
+
+          if (response.ok) {
+            console.log('Produto excluído com sucesso!');
+            carregarProdutos(); // Atualiza a lista após a exclusão
+          } else {
+            console.error('Erro ao excluir produto:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Erro ao excluir produto:', error);
+        }
+      }
+    }
+
+    window.onload = carregarProdutos;
+  </script>
+</body>
+</html>

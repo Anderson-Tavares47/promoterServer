@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testar Obtenção de Produtos</title>
+</head>
+<body>
+  <h1>Testar Obtenção de Produtos</h1>
+  <button type="button" onclick="obterProdutos()">Obter Produtos</button>
+
+  <script>
+    async function obterProdutos() {
+      try {
+        const response = await fetch('http://localhost:5000/getProducts', {
+          headers: {
+            'api-key': 'tpfTech', // Sua chave API aqui
+          },
+        });
+
+        if (response.ok) {
+          const produtos = await response.json();
+          console.log('Produtos obtidos:', produtos);
+        } else {
+          console.error('Erro ao obter produtos:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erro ao obter produtos:', error);
+      }
+    }
+  </script>
+</body>
+</html>
