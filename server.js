@@ -9,11 +9,11 @@ const productsModule = require("./modules/productsModule");
 const getProducts = require("./modules/getProductsModule");
 const putProducts = require("./modules/putProductsModule");
 const deleteProducts = require("./modules/deleteProductsModule");
-const questionModule = require("./modules/createQuestionModule");
-const questioUserModule = require("./modules/questionUsersModule");
+const searchModule = require("./modules/createSearchModule");
+const searchUserModule = require("./modules/searchUsersModule");
 const checkinModule = require("./modules/checkinModule");
 const getUsers = require("./modules/getUsersModule");
-const getQuestions = require("./modules/getQuestionsModule");
+const getSearch = require("./modules/getSearchModule");
 
 
 const app = express();
@@ -30,11 +30,11 @@ app.use("/products", productsModule);
 app.use("/getProducts", getProducts);
 app.use("/putProducts", putProducts);
 app.use("/deleteProducts", deleteProducts);
-app.use("/question", questionModule);
-app.use("/questionUser", questioUserModule);
+app.use("/search", searchModule);
+app.use("/searchUser", searchUserModule);
 app.use("/checkin", checkinModule);
 app.use("/users", getUsers);
-app.use("/questions", getQuestions);
+app.use("/getSearch", getQuestions);
 
 db.connect()
   .then(() => {
