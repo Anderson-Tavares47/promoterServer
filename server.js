@@ -13,7 +13,7 @@ const questionModule = require("./modules/createQuestionModule");
 const questioUserModule = require("./modules/questionUsersModule");
 const checkinModule = require("./modules/checkinModule");
 const getUsers = require("./modules/getUsersModule");
-
+const getQuestions = require("./modules/getQuestionsModule");
 
 
 const app = express();
@@ -34,6 +34,7 @@ app.use("/question", questionModule);
 app.use("/questionUser", questioUserModule);
 app.use("/checkin", checkinModule);
 app.use("/users", getUsers);
+app.use("/questions", getQuestions);
 
 db.connect()
   .then(() => {
