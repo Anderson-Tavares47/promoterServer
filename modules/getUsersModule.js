@@ -6,6 +6,7 @@ const validateApiKey = require("./validateApiKey");
 router.get("/", validateApiKey, async (req, res) => {
   try {
     const users = await db.any("SELECT * FROM users");
+    console.log(users);
     res.status(200).json(users);
   } catch (error) {
     console.error("Erro ao obter usuários:", error);
