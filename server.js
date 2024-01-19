@@ -15,6 +15,10 @@ const checkinModule = require("./modules/checkinModule");
 const getUsers = require("./modules/getUsersModule");
 const getSearch = require("./modules/getSearchModule");
 const getQuestion = require("./modules/getQuestionsModule");
+const getCollaboratorsModule = require("./modules/getCollaboratorsModule");
+const putCollaboratorsModule = require("./modules/putCollaboratorsModule");
+const deleteCollaboratorsModule = require("./modules/deleteProductsModule");
+const collaboratorsModule = require("./modules/collaboratorsModule");
 
 
 const app = express();
@@ -37,6 +41,10 @@ app.use("/checkin", checkinModule);
 app.use("/users", getUsers);
 app.use("/getSearch", getSearch);
 app.use("/getQuestion", getQuestion);
+app.use("/collaborators", collaboratorsModule);
+app.use("/putCollaborators", putCollaboratorsModule);
+app.use("/deleteCollaborators", deleteCollaboratorsModule);
+app.use("/getCollaborators", getCollaboratorsModule);
 
 db.connect()
   .then(() => {
