@@ -9,7 +9,7 @@ router.get("/", validateApiKey, async (req, res) => {
     res.status(200).json(users);
   } catch (error) {
     console.error("Erro ao obter usuários:", error);
-    res.status(500).json({ error: "Erro ao obter usuários" });
+    res.status(500).json({ error: "Erro ao obter pesquisas" });
   }
 });
 
