@@ -34,7 +34,7 @@ app.use("/search", searchModule);
 app.use("/searchUser", searchUserModule);
 app.use("/checkin", checkinModule);
 app.use("/users", getUsers);
-app.use("/getSearch", getQuestions);
+app.use("/getSearch", getSearch);
 
 db.connect()
   .then(() => {
