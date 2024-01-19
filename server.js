@@ -14,6 +14,7 @@ const searchUserModule = require("./modules/searchUsersModule");
 const checkinModule = require("./modules/checkinModule");
 const getUsers = require("./modules/getUsersModule");
 const getSearch = require("./modules/getSearchModule");
+const getQuestion = require("./modules/getQuestionsModule");
 
 
 const app = express();
@@ -35,6 +36,7 @@ app.use("/searchUser", searchUserModule);
 app.use("/checkin", checkinModule);
 app.use("/users", getUsers);
 app.use("/getSearch", getSearch);
+app.use("/getQuestion", getQuestion);
 
 db.connect()
   .then(() => {
