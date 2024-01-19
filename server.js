@@ -12,6 +12,7 @@ const deleteProducts = require("./modules/deleteProductsModule");
 const questionModule = require("./modules/createQuestionModule");
 const questioUserModule = require("./modules/questionUsersModule");
 const checkinModule = require("./modules/checkinModule");
+const getUsers = require("./modules/getUsersModule");
 
 
 
@@ -32,6 +33,7 @@ app.use("/deleteProducts", deleteProducts);
 app.use("/question", questionModule);
 app.use("/questionUser", questioUserModule);
 app.use("/checkin", checkinModule);
+app.use("/users", getUsers);
 
 db.connect()
   .then(() => {
