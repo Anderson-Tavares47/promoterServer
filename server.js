@@ -51,7 +51,7 @@ app.use("/deleteCollaborators", deleteCollaboratorsModule);
 app.use("/getCollaborators", getCollaboratorsModule);
 app.use("/getRoutes", getRoutesModule);
 app.use("/postRoutes", postRoutesModule);
-app.use("/putRoutesModule", putRoutesModule);
+app.use("/putRoutes", putRoutesModule);
 app.use("/deleteRoutes", deleteRoutesModule);
 
 db.connect()
