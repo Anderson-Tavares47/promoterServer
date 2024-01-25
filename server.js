@@ -19,6 +19,10 @@ const getCollaboratorsModule = require("./modules/getCollaboratorsModule");
 const putCollaboratorsModule = require("./modules/putCollaboratorsModule");
 const deleteCollaboratorsModule = require("./modules/deleteProductsModule");
 const collaboratorsModule = require("./modules/collaboratorsModule");
+const getRoutesModule = require("./modules/getRoutesModule");
+const postRoutesModule = require("./modules/postRoutesModule");
+const putRoutesModule = require("./modules/putRoutesModule");
+const deleteRoutesModule = require("./modules/deleteRoutesModule");
 
 
 const app = express();
@@ -45,6 +49,10 @@ app.use("/collaborators", collaboratorsModule);
 app.use("/putCollaborators", putCollaboratorsModule);
 app.use("/deleteCollaborators", deleteCollaboratorsModule);
 app.use("/getCollaborators", getCollaboratorsModule);
+app.use("/getRoutes", getRoutesModule);
+app.use("/postRoutes", postRoutesModule);
+app.use("/putRoutesModule", putRoutesModule);
+app.use("/deleteRoutes", deleteRoutesModule);
 
 db.connect()
   .then(() => {
