@@ -15,11 +15,12 @@ router.post("/", validateApiKey, async (req, res) => {
       nomeResponsavel,
       email,
       telefone,
-      bairro
+      bairro,
+      cnpj
     } = req.body;
 
     const newEmpresa = await db.one(
-      `INSERT INTO empresa (razaoSocial, nomeFantasia, logradouro, numero, cidade, estado, nomeResponsavel, email, telefone, bairro) 
+      `INSERT INTO empresa (razaoSocial, nomeFantasia, logradouro, numero, cidade, estado, nomeResponsavel, email, telefone, bairro, cnpj) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
        RETURNING *`,
       [razaoSocial, nomeFantasia, logradouro, numero, cidade, estado, nomeResponsavel, email, telefone, bairro]

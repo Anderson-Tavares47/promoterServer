@@ -15,7 +15,8 @@ router.put("/:id", validateApiKey, async (req, res) => {
       nomeResponsavel,
       email,
       telefone,
-      bairro
+      bairro,
+      cnpj
     } = req.body;
 
     const updatedEmpresa = await db.one(
@@ -35,6 +36,7 @@ router.put("/:id", validateApiKey, async (req, res) => {
         email,
         telefone,
         bairro,
+        cnpj,
         req.params.id
       ]
     );
