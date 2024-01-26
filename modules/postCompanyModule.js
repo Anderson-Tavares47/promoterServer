@@ -43,4 +43,4 @@ router.post("/", validateApiKey, async (req, res) => {
   }
 });
 
-module.export = router;
+module.exports = router;
