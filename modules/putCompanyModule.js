@@ -16,14 +16,14 @@ router.put("/:id", validateApiKey, async (req, res) => {
       email,
       telefone,
       bairro,
-      cnpj
+      cnpj,
     } = req.body;
 
     const updatedEmpresa = await db.one(
       `UPDATE empresa 
        SET razaoSocial = $1, nomeFantasia = $2, logradouro = $3, numero = $4, cidade = $5, estado = $6, 
-           nomeResponsavel = $7, email = $8, telefone = $9, bairro = $10
-       WHERE id = $11
+           nomeResponsavel = $7, email = $8, telefone = $9, bairro = $10,
+       WHERE id = $12
        RETURNING *`,
       [
         razaoSocial,
@@ -37,7 +37,7 @@ router.put("/:id", validateApiKey, async (req, res) => {
         telefone,
         bairro,
         cnpj,
-        req.params.id
+        req.params.id,
       ]
     );
 

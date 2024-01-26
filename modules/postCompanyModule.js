@@ -16,14 +16,26 @@ router.post("/", validateApiKey, async (req, res) => {
       email,
       telefone,
       bairro,
-      cnpj
+      cnpj,
     } = req.body;
 
     const newEmpresa = await db.one(
       `INSERT INTO empresa (razaoSocial, nomeFantasia, logradouro, numero, cidade, estado, nomeResponsavel, email, telefone, bairro, cnpj) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) 
        RETURNING *`,
-      [razaoSocial, nomeFantasia, logradouro, numero, cidade, estado, nomeResponsavel, email, telefone, bairro]
+      [
+        razaoSocial,
+        nomeFantasia,
+        logradouro,
+        numero,
+        cidade,
+        estado,
+        nomeResponsavel,
+        email,
+        telefone,
+        bairro,
+        cnpj,
+      ]
     );
 
     res.status(201).json(newEmpresa);
