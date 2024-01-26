@@ -16,3 +16,5 @@ router.post("/", validateApiKey, async (req, res) => {
       res.status(500).json({ error: "Erro ao criar rota" });
     }
   });
+
+module.exports = router;
