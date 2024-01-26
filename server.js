@@ -23,7 +23,10 @@ const getRoutesModule = require("./modules/getRoutesModule");
 const postRoutesModule = require("./modules/postRoutesModule");
 const putRoutesModule = require("./modules/putRoutesModule");
 const deleteRoutesModule = require("./modules/deleteRoutesModule");
-
+const getCompanyModule = require("./modules/getCompanyModule");
+const postCompanyModule = require("./modules/postCompanyModule");
+const putCompanyModule = require("./modules/putCompanyModule");
+const deleteCompanyModule = require("./modules/deleteCompanyModule");
 
 const app = express();
 const port = 5000;
@@ -53,6 +56,10 @@ app.use("/getRoutes", getRoutesModule);
 app.use("/postRoutes", postRoutesModule);
 app.use("/putRoutes", putRoutesModule);
 app.use("/deleteRoutes", deleteRoutesModule);
+app.use("/getCompany", getCompanyModule);
+app.use("/postCompany", postCompanyModule);
+app.use("/putCompany", putCompanyModule);
+app.use("/deleteCompany", deleteCompanyModule);
 
 db.connect()
   .then(() => {
