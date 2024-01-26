@@ -1,3 +1,8 @@
+const express = require("express");
+const router = express.Router();
+const db = require("../db");
+const validateApiKey = require("./validateApiKey");
+
 router.put("/:id", validateApiKey, async (req, res) => {
   const empresaId = req.params.id;
   const {
