@@ -21,7 +21,7 @@ router.put("/:id", validateApiKey, async (req, res) => {
 
   try {
     const result = await db.one(
-      "UPDATE empresa SET razao_social = $1, nome_fantasia = $2, logradouro = $3, numero = $4, cidade = $5, estado = $6, nome_responsavel = $7, email = $8, telefone = $9, bairro = $10, cnpj = $11 WHERE id = $12 RETURNING *",
+      "UPDATE empresa SET razaoSocial = $1, nomeFantasia = $2, logradouro = $3, numero = $4, cidade = $5, estado = $6, nomeResponsavel = $7, email = $8, telefone = $9, bairro = $10, cnpj = $11 WHERE id = $12 RETURNING *",
       [
         razaoSocial,
         nomeFantasia,
