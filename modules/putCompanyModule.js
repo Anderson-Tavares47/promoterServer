@@ -44,3 +44,5 @@ router.put("/:id", validateApiKey, async (req, res) => {
     res.status(500).json({ error: "Erro ao atualizar empresa" });
   }
 });
+
+module.export = router;
