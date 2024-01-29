@@ -1,3 +1,9 @@
+const express = require("express");
+const bcrypt = require("bcrypt");
+const router = express.Router();
+const db = require("../db");
+const validateApiKey = require("./validateApiKey");
+
 router.post("/:idPesquisa", validateApiKey, async (req, res) => {
   const idPesquisa = req.params.idPesquisa;
   const perguntas = req.body;
