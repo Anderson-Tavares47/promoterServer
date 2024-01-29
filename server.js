@@ -46,7 +46,7 @@ app.use("/products", productsModule);
 app.use("/getProducts", getProducts);
 app.use("/putProducts", putProducts);
 app.use("/deleteProducts", deleteProducts);
-app.use("/search", searchModule);
+app.use("/createSearch", searchModule);
 app.use("/searchUser", searchUserModule);
 app.use("/checkin", checkinModule);
 app.use("/users", getUsers);
