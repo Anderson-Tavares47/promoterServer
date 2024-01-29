@@ -4,7 +4,7 @@ const cors = require("cors");
 const db = require("./db");
 const validateApiKey = require("./modules/validateApiKey");
 const createAccountModule = require("./modules/createAccountModule");
-const loginModule = require("./modules/loginModule")
+const loginModule = require("./modules/loginModule");
 const productsModule = require("./modules/productsModule");
 const getProducts = require("./modules/getProductsModule");
 const putProducts = require("./modules/putProductsModule");
@@ -17,7 +17,7 @@ const getSearch = require("./modules/getSearchModule");
 const getQuestion = require("./modules/getQuestionsModule");
 const getCollaboratorsModule = require("./modules/getCollaboratorsModule");
 const putCollaboratorsModule = require("./modules/putCollaboratorsModule");
-const deleteCollaboratorsModule = require("./modules/deleteProductsModule");
+const deleteCollaboratorsModule = require("./modules/deleteCollaboratorsModule");
 const collaboratorsModule = require("./modules/collaboratorsModule");
 const getRoutesModule = require("./modules/getRoutesModule");
 const postRoutesModule = require("./modules/postRoutesModule");
@@ -79,6 +79,6 @@ db.connect()
       console.log(`Servidor está ouvindo em http://localhost:${port}`);
     });
   })
-  .catch(error => {
+  .catch((error) => {
     console.error("Erro ao conectar ao banco de dados:", error);
   });
