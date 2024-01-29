@@ -27,7 +27,7 @@ const getCompanyModule = require("./modules/getCompanyModule");
 const postCompanyModule = require("./modules/postCompanyModule");
 const putCompanyModule = require("./modules/putCompanyModule");
 const deleteCompanyModule = require("./modules/deleteCompanyModule");
-const putSearchModule = require("./module/putSearchModule");
+const putSearchModule = require("./modules/putSearchModule");
 
 const app = express();
 const port = 5000;
