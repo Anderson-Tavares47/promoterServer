@@ -6,7 +6,7 @@ const validateApiKey = require("./validateApiKey");
 router.post("/:idPesquisa", validateApiKey, async (req, res) => {
   const idPesquisa = req.params.idPesquisa;
   const perguntas = req.body;
-  console.log(pergunta)
+  console.log(perguntas)
   
   try {
     if (perguntas && perguntas.length > 0) {
