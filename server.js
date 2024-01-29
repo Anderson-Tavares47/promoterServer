@@ -27,6 +27,7 @@ const getCompanyModule = require("./modules/getCompanyModule");
 const postCompanyModule = require("./modules/postCompanyModule");
 const putCompanyModule = require("./modules/putCompanyModule");
 const deleteCompanyModule = require("./modules/deleteCompanyModule");
+const putSearchModule = require("./module/putSearchModule");
 
 const app = express();
 const port = 5000;
@@ -60,6 +61,7 @@ app.use("/getCompany", getCompanyModule);
 app.use("/postCompany", postCompanyModule);
 app.use("/putCompany", putCompanyModule);
 app.use("/deleteCompany", deleteCompanyModule);
+app.use("/putSearch", putSearchModule);
 
 db.connect()
   .then(() => {
