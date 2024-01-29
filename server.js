@@ -31,6 +31,7 @@ const putSearchModule = require("./modules/putSearchModule");
 const deleteSearchModule = require("./modules/deleteSearchModule");
 const putQuestionModule = require("./modules/putQuestionModule");
 const deleteQuestionModule = require("./modules/deleteQuestionModule");
+const createQuestionModule = require("./modules/createQuestionModule");
 
 const app = express();
 const port = 5000;
@@ -68,6 +69,7 @@ app.use("/putSearch", putSearchModule);
 app.use("/deleteSearch", deleteSearchModule);
 app.use("/putQuestion", putQuestionModule);
 app.use("/deleteQuestion", deleteQuestionModule);
+app.use("/createQuestion", createQuestionModule);
 
 db.connect()
   .then(() => {
