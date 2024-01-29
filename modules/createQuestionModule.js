@@ -6,11 +6,11 @@ const validateApiKey = require("./validateApiKey");
 router.post("/:idPesquisa", validateApiKey, async (req, res) => {
   const idPesquisa = req.params.idPesquisa;
   const perguntas = req.body;
+  console.log(pergunta)
   
   try {
     if (perguntas && perguntas.length > 0) {
       await Promise.all(perguntas.map(async (pergunta) => {
-        console.log(pergunta)
         await db.oneOrNone(
           "INSERT INTO perguntas (id_pesquisa, pergunta, tipo_pergunta, respostas, obrigatoriedade) VALUES ($1, $2, $3, $4, $5)",
           [
